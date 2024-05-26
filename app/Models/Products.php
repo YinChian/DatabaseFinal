@@ -16,12 +16,12 @@ class Products extends Model
         'CategoryID',
     ];
 
-    public function products_firstchild(): HasMany
+    public function products_serviceRequests(): HasMany
     {
         return $this->hasMany(ServiceRequests::class, 'ProductID');
     }
 
-    public function products_secondchild(): HasMany
+    public function products_orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetails::class, 'ProductID');
     }

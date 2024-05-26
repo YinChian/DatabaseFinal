@@ -13,12 +13,12 @@ class OrderDetails extends Model
         'Price',
     ];
 
-    public function products_firstparent(): BelongsTo
+    public function product_orderDetails(): BelongsTo
     {
         return $this->belongsTo(Products::class, 'ProductID');
     }
 
-    public function products_secondparent(): BelongsTo
+    public function salesOrder_orderDetails(): BelongsTo
     {
         return $this->belongsTo(SalesOrder::class, 'ProductID');
     }

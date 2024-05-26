@@ -16,17 +16,17 @@ class Customers extends Model
         'CustomerType',
     ];
 
-    public function customer_firstchild():HasMany
+    public function customer_customerInteractions():HasMany
     {
         return $this->hasMany(CustomerInteractions::class, 'CustomerID');
     }
 
-    public function customer_secondchild():HasMany
+    public function customer_serviceRequests():HasMany
     {
         return $this->hasMany(ServiceRequests::class, 'CustomerID');
     }
 
-    public function customer_thirdchild():HasOne
+    public function customer_salesOrder():HasOne
     {
         return $this->hasOne(SalesOrder::class, 'CustomerID');
     }
