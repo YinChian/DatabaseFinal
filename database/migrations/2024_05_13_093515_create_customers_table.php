@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('Email')->unique();
             $table->string('PhoneNumber');
             $table->string('Address');
-            $table->string('CustomerType');
+            $table->enum('CustomerType', ['Individual', 'Corporate']);
             $table->timestamp('RegistrationDate')->nullable();
         });
     }
