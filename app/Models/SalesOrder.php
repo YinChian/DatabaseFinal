@@ -15,12 +15,12 @@ class SalesOrder extends Model
         'DeliveryStatus',
     ];
 
-    public function salesorders_parent(): BelongsTo
+    public function customers_salesOrder(): BelongsTo
     {
         return $this->belongsTo(Customers::class, 'CustomerID');
     }
 
-    public function salesorders_children(): HasMany
+    public function orderDetails_salesOrder(): HasMany
     {
         return $this->hasMany(OrderDetails::class, 'OrderID');
     }
