@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('service_requests', function (Blueprint $table) {
             $table->id('RequestID');
-            $table->foreignId('CustomerID')->constrained('customers');
-            $table->foreignId('ProductID')->constrained('products');
+            $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('ProductID')->constrained('products')->onDelete('cascade');
             $table->text('IssueDescription');
             $table->date('ResolutionDate')->nullable();
             $table->timestamp('RequestDate');

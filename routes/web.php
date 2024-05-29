@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+   return view('welcome');
+});
 
 Route::apiResource('customers', CustomersController::class);
 Route::apiResource('sales-orders', SalesOrderController::class);

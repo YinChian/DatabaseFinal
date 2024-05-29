@@ -11,7 +11,7 @@ class CustomersController extends Controller
     {
         $customers = Customers::all();
 
-        return  view('customers.index', compact('customers'));
+        return  response()->json($customers);
     }
 
     public function store (CustomersRequest $request)
@@ -37,7 +37,12 @@ class CustomersController extends Controller
 
     public function destroy ($id)
     {
-        Customers::findOrFail($id)->delete();
+        $customer = Customers::find($id);
+
+        if (!$customer) {
+            return response()->json(['message' => 'Customer not found.'], 404);
+        }
+        $customer->delete();
 
         return response()->json(null, 204);
     }

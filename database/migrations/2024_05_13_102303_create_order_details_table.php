@@ -8,8 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('order_details', function (Blueprint $table) {
-            $table->foreignId('OrderID')->constrained('sales_orders');
-            $table->foreignId('ProductID')->constrained('products');
+            $table->foreignId('OrderID')->constrained('sales_orders')->onDelete('cascade');
+            $table->foreignId('ProductID')->constrained('products')->onDelete('cascade');
             $table->unsignedInteger('Quantity');
             $table->unsignedInteger('Price');
         });

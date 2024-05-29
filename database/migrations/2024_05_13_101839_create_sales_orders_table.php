@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->id('OrderID');
-            $table->foreignId('CustomerID')->constrained('customers');
+            $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
             $table->unsignedInteger('TotalAmount');
             $table->enum('PaymentStatus', ['Pending', 'Completed', 'Failed']);
             $table->enum('DeliveryStatus', ['Pending', 'Shipped', 'Delivered']);

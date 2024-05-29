@@ -9,12 +9,15 @@ return new class extends Migration {
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id('CustomerID');
+            // $table->id();
             $table->string('Name');
             $table->string('Email')->unique();
             $table->string('PhoneNumber');
             $table->string('Address');
             $table->enum('CustomerType', ['Individual', 'Corporate']);
-            $table->timestamp('RegistrationDate')->nullable();
+            $table->timestamp('RegistrationDate');
+            // $table->date('RegistrationDate');
+            // $table->timestamps();
         });
     }
 
