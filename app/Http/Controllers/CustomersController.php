@@ -7,32 +7,43 @@ use App\Models\Customers;
 
 class CustomersController extends Controller
 {
-    public function index()
+    public function index ()
     {
-        return Customers::all();
+        $customers = Customers::all();
+
+        return  response()->json($customers);
     }
 
-    public function store(CustomersRequest $request)
+    public function store (CustomersRequest $request)
     {
-        return Customers::create($request->validated());
+        $customers = Customers::create($request->all());
+
+        return response()->json($customers, 201);
     }
 
-    public function show(Customers $customers)
+    public function show ($id)
     {
-        return $customers;
+        $customers = Customers::findOrFail($id);
+
+        return response()->json($customers);
     }
 
-    public function update(CustomersRequest $request, Customers $customers)
+    public function update (CustomersRequest $request, $id)
     {
-        $customers->update($request->validated());
+        $customers = Customers::findOrFail($id)->update($request->all());
 
-        return $customers;
+        return response()->json($customers);
     }
 
-    public function destroy(Customers $customers)
+    public function destroy ($id)
     {
-        $customers->delete();
+        $customer = Customers::find($id);
 
-        return response()->json();
+        if (!$customer) {
+            return response()->json(['message' => 'Customer not found.'], 404);
+        }
+        $customer->delete();
+
+        return response()->json(null, 204);
     }
 }

@@ -7,32 +7,38 @@ use App\Models\CustomerInteractions;
 
 class CustomerInteractionsController extends Controller
 {
-    public function index()
+    public function index ()
     {
-        return CustomerInteractions::all();
+        $interactions = CustomerInteractions::all();
+
+        return response()->json($interactions);
     }
 
-    public function store(CustomerInteractionsRequest $request)
+    public function store (CustomerInteractionsRequest $request)
     {
-        return CustomerInteractions::create($request->validated());
+        $interaction = CustomerInteractions::create($request->all());
+
+        return response()->json($interaction, 201);
     }
 
-    public function show(CustomerInteractions $customerInteractions)
+    public function show ($id)
     {
-        return $customerInteractions;
+        $interaction = CustomerInteractions::find($id);
+        return response()->json($interaction);
     }
 
-    public function update(CustomerInteractionsRequest $request, CustomerInteractions $customerInteractions)
+    public function update (CustomerInteractionsRequest $request, $id)
     {
-        $customerInteractions->update($request->validated());
+        $interaction = CustomerInteractions::findOrFail($id);
+        $interaction->update($request->all());
 
-        return $customerInteractions;
+        return response()->json($interaction);
     }
 
-    public function destroy(CustomerInteractions $customerInteractions)
+    public function destroy ($id)
     {
-        $customerInteractions->delete();
+        CustomerInteractions::find($id)->delete();
 
-        return response()->json();
+        return response()->json(null, 204);
     }
 }

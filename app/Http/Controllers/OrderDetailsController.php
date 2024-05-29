@@ -7,32 +7,38 @@ use App\Models\OrderDetails;
 
 class OrderDetailsController extends Controller
 {
-    public function index()
+    public function index ()
     {
-        return OrderDetails::all();
+        $orderDetails = OrderDetails::all();
+
+        return response()->json($orderDetails);
     }
 
-    public function store(OrderDetailsRequest $request)
+    public function store (OrderDetailsRequest $request)
     {
-        return OrderDetails::create($request->validated());
+        $orderDetail = OrderDetails::create($request->all());
+
+        return response()->json($orderDetail, 201);
     }
 
-    public function show(OrderDetails $orderDetails)
+    public function show ($id)
     {
-        return $orderDetails;
+        $orderDetail = OrderDetails::find($id);
+
+        return response()->json($orderDetail);
     }
 
-    public function update(OrderDetailsRequest $request, OrderDetails $orderDetails)
+    public function update (OrderDetailsRequest $request, $id)
     {
-        $orderDetails->update($request->validated());
+        $orderDetail = OrderDetails::findOrFail($id);
+        $orderDetail->update($request->all());
 
-        return $orderDetails;
+        return response()->json($orderDetail);
     }
 
-    public function destroy(OrderDetails $orderDetails)
+    public function destroy ($id)
     {
-        $orderDetails->delete();
-
-        return response()->json();
+        OrderDetails::find($id)->delete();
+        return response()->json(null, 204);
     }
 }

@@ -7,32 +7,39 @@ use App\Models\SalesOrder;
 
 class SalesOrderController extends Controller
 {
-    public function index()
+    public function index ()
     {
-        return SalesOrder::all();
+        $orders = SalesOrder::all();
+
+        return response()->json($orders);
     }
 
-    public function store(SalesOrderRequest $request)
+    public function store (SalesOrderRequest $request)
     {
-        return SalesOrder::create($request->validated());
+        $order = SalesOrder::create($request->all());
+
+        return response()->json($order, 201);
     }
 
-    public function show(SalesOrder $salesOrder)
+    public function show ($id)
     {
-        return $salesOrder;
+        $order = SalesOrder::find($id);
+
+        return response()->json($order);
     }
 
-    public function update(SalesOrderRequest $request, SalesOrder $salesOrder)
+    public function update (SalesOrderRequest $request, $id)
     {
-        $salesOrder->update($request->validated());
+        $order = SalesOrder::findorFail($id);
+        $order->update($request->all());
 
-        return $salesOrder;
+        return response()->json($order);
     }
 
-    public function destroy(SalesOrder $salesOrder)
+    public function destroy ($id)
     {
-        $salesOrder->delete();
+        SalesOrder::find($id)->delete();
 
-        return response()->json();
+        return response()->json(null, 204);
     }
 }

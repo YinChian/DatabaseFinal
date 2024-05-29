@@ -9,20 +9,12 @@ return new class extends Migration {
     {
         Schema::create('service_requests', function (Blueprint $table) {
             $table->id('RequestID');
-            $table->bigInteger('CustomerID')->unsigned();
-            $table->bigInteger('ProductID')->unsigned();
-            $table->string('IssueDescription');
-            $table->date('ResolutionDate');
-            $table->string('Status');
-            $table->timestamp('RequestDate')->nullable();
-
-            $table->foreign('CustomerID')
-                ->references('CustomerID')
-                ->on('customers');
-
-            $table->foreign('ProductID')
-                ->references('ProductID')
-                ->on('products');
+            $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('ProductID')->constrained('products')->onDelete('cascade');
+            $table->text('IssueDescription');
+            $table->date('ResolutionDate')->nullable();
+            $table->timestamp('RequestDate');
+            $table->enum('Status', ['Pending', 'Resolved']);
         });
     }
 

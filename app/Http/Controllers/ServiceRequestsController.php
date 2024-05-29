@@ -9,30 +9,35 @@ class ServiceRequestsController extends Controller
 {
     public function index()
     {
-        return ServiceRequests::all();
+        $requests = ServiceRequests::all();
+        return response()->json($requests);
     }
 
-    public function store(ServiceRequestsRequest $request)
+    public function store (ServiceRequestsRequest $request)
     {
-        return ServiceRequests::create($request->validated());
+        $request = ServiceRequests::create($request->all());
+        return response()->json($request, 201);
     }
 
-    public function show(ServiceRequests $serviceRequests)
+    public function show ($id)
     {
-        return $serviceRequests;
+        $request = ServiceRequests::find($id);
+
+        return response()->json($request);
     }
 
-    public function update(ServiceRequestsRequest $request, ServiceRequests $serviceRequests)
+    public function update(ServiceRequestsRequest $request, $id)
     {
-        $serviceRequests->update($request->validated());
+        $request = ServiceRequests::findOrFail($id);
+        $request->update($request->all());
 
-        return $serviceRequests;
+        return response()->json($request);
     }
 
-    public function destroy(ServiceRequests $serviceRequests)
+    public function destroy ($id)
     {
-        $serviceRequests->delete();
+        ServiceRequests::find($id)->delete();
 
-        return response()->json();
+        return response()->json(null, 204);
     }
 }

@@ -7,32 +7,39 @@ use App\Models\Products;
 
 class ProductsController extends Controller
 {
-    public function index()
+    public function index ()
     {
-        return Products::all();
+        $products =  Products::all();
+
+        return response()->json($products);
     }
 
-    public function store(ProductsRequest $request)
+    public function store (ProductsRequest $request)
     {
-        return Products::create($request->validated());
+        $products = Products::create($request->all());
+
+        return response()->json($products, 201);
     }
 
-    public function show(Products $products)
+    public function show ($id)
     {
-        return $products;
+        $product = Products::find($id);
+
+        return response()->json($product);
     }
 
-    public function update(ProductsRequest $request, Products $products)
+    public function update (ProductsRequest $request, $id)
     {
-        $products->update($request->validated());
+        $product = Products::findOrFail($id);
+        $product->update($request->all());
 
-        return $products;
+        return response()->json($product);
     }
 
-    public function destroy(Products $products)
+    public function destroy ($id)
     {
-        $products->delete();
+        Products::find($id)->delete();
 
-        return response()->json();
+        return response()->json(null, 204);
     }
 }

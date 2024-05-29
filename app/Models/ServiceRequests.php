@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ServiceRequests extends Model
 {
@@ -13,6 +14,16 @@ class ServiceRequests extends Model
         'ResolutionDate',
         'Status',
     ];
+
+    public function customers_service_requests(): BelongsTo
+    {
+        return $this->belongsTo(Customers::class, 'CustomerID');
+    }
+
+    public function products_service_requests(): BelongsTo
+    {
+        return $this->belongsTo(Products::class, 'ProductID');
+    }
 
     protected function casts()
     {

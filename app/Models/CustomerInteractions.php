@@ -9,6 +9,7 @@ class CustomerInteractions extends Model
 {
     protected $fillable = [
         'CustomerID',
+        'Date',
         'Mode',
         'Description',
     ];
