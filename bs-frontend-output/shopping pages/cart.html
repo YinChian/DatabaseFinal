@@ -118,9 +118,8 @@
         <div class="container position-relative">
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2>付款</h2>
-                    <p class="w-lg-50">我們支援ASIV、SlaveCard的信用卡<br>請注意：這些資料不會真的傳到後端去</p>
-                    <p class="w-lg-50"></p>
+                    <h2>選取數量</h2>
+                    <p class="w-lg-50">請先選取您要的數量</p>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
@@ -136,20 +135,11 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center p-3">
-                            <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-currency-dollar">
-                                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"></path>
-                                </svg></div>
-                            <div class="px-2">
-                                <h6 class="mb-0" style="font-weight: bold;">金額小計</h6>
-                                <p class="mb-0">100 $</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center p-3">
                             <div class="bs-icon-md bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-box">
                                     <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"></path>
                                 </svg></div>
                             <div class="px-2">
-                                <h6 class="mb-0" style="font-weight: bold;">購買數量</h6>
+                                <h6 class="mb-0" style="font-weight: bold;">庫存</h6>
                                 <p class="mb-0">1</p>
                             </div>
                         </div>
@@ -158,8 +148,8 @@
                                     <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"></path>
                                 </svg></div>
                             <div class="px-2">
-                                <h6 class="mb-0" style="font-weight: bold;">總計金額</h6>
-                                <p class="mb-0">100 $</p>
+                                <h6 class="mb-0" style="font-weight: bold;">金額</h6>
+                                <p class="mb-0">10</p>
                             </div>
                         </div>
                     </div>
@@ -167,12 +157,9 @@
                 <div class="col-md-6 col-lg-5 col-xl-4">
                     <div>
                         <form class="p-3 p-xl-4" method="post">
-                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="信用卡號 / Card Number" pattern="^\d{13,19}$" required=""></div>
-                            <div class="mb-3"><input class="form-control" type="text" id="name-3" name="name" placeholder="到期日 / Due Date" required=""></div>
-                            <div class="mb-3"><input class="form-control" type="text" id="name-2" name="name" placeholder="檢核碼 / CCV" required="" pattern="^\d{3}$"></div>
+                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="數量 / Quantity" inputmode="numeric" autocomplete="off" autofocus="" required="" pattern="^-?[1-9]\d*$" minlength="1" maxlength="10"></div>
                             <div class="mb-3"></div>
-                            <div class="mb-3"></div>
-                            <div><button class="btn btn-primary d-block w-100" type="submit">付款 / Pay</button></div>
+                            <div><button class="btn btn-primary d-block w-100" type="submit">前往付款 / Checkout</button></div>
                         </form>
                     </div>
                 </div>
