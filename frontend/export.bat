@@ -44,9 +44,9 @@ for %%p in %pages% do (
         set "full_path=%%f"
         set "file_name=%%~nf"
         if exist "!file_name!.%new_ext%" (
-            echo "!file_name!.%new_ext%" already exists. Skipping.
-        ) else (
-            ren "!full_path!" "!file_name!.%new_ext%"
+            del "!file_name!.%new_ext%"
+            echo "!file_name!.%new_ext%" already exists. Delete old file.
         )
+        ren "!full_path!" "!file_name!.%new_ext%"
     )
 )
