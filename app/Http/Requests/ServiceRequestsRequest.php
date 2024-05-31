@@ -9,11 +9,9 @@ class ServiceRequestsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'CustomerID' => ['required', 'integer'],
-            'ProductID' => ['required', 'integer'],
-            'IssueDescription' => ['required'],
-            'ResolutionDate' => ['required', 'date'],
-            'Status' => ['required'],
+            'CustomerID' => ['required'],
+            'ProductID' => ['required'],
+            'IssueDescription' => ['required']
         ];
     }
 
