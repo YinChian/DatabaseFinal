@@ -21,18 +21,6 @@ class SalesOrderController extends Controller
         return response()->json($salesOrders);
     }
 
-    // public function store (SalesOrderRequest $request)
-    // {
-    //     $salesOrder = SalesOrder::create($request->all());
-
-    //     if (!$salesOrder) {
-    //         return response()->json(['error' => 'Sales Order not created'], 404);
-    //     }
-
-    //     return response()->json(true, 201);
-    // }
-
-
     public function store(SalesOrderRequest $request)
     {
         Log::info('Store function in SalesOrderController hit.');
@@ -77,7 +65,7 @@ class SalesOrderController extends Controller
                 'DeliveryStatus' => 'Pending',
             ]);
 
-            LOG::info('Sales Order created: ' . $salesOrder);
+            // LOG::info('Sales Order created: ' . $salesOrder);
 
             if ($salesOrder) {
                 // Create Order Details
@@ -112,7 +100,8 @@ class SalesOrderController extends Controller
 
     public function show($id)
     {
-        $salesOrder = SalesOrder::find($id);
+        // find sales order by customer id
+        $salesOrder = SalesOrder::where('CustomerID', $id)->first();
 
         if (!$salesOrder) {
             return response()->json(['error' => 'Sales Order not found'], 404);
@@ -132,7 +121,7 @@ class SalesOrderController extends Controller
 
         $salesOrder = SalesOrder::find($id);
 
-        Log::info('Sales Order found: ' . $salesOrder);
+        // Log::info('Sales Order found: ' . $salesOrder);
 
         if (!$salesOrder) {
             return response()->json(['error' => 'Sales Order not found'], 404);
@@ -160,8 +149,24 @@ class SalesOrderController extends Controller
                 'DeliveryStatus' => $request->delivery_status,
             ]);
 
-            LOG::info('Sales Order updated: ' . $salesOrder);
 
+            // LOG::info('Sales Order updated: ' . $salesOrder);
+
+
+            // Check if payment status is Completed
+            // then update product quantity
+            if ($request->payment_status == 'Completed') {
+                $orderDetails = OrderDetails::where('OrderID', $salesOrder->id)->get();
+                foreach ($orderDetails as $detail) {
+                    $product = Products::find($detail->ProductID);
+                    if ($product) {
+                        $product->StockQuantity -= $detail->Quantity;
+                        $product->save();
+                    } else {
+                        Log::error('Product not found while updating stock quantity: ' . $detail->ProductID);
+                    }
+                }
+            }
 
             // design for update order details
             // if (isset($validatedData['order_details'])) {
