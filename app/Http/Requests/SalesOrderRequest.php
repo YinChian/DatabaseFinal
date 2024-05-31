@@ -11,7 +11,7 @@ class SalesOrderRequest extends FormRequest
         return [
             'customer_id' => ['required', 'exists:customers,id'],
             'order_details' => ['required', 'array'],
-            'order_details.*.product_id' => ['required', 'exists:products,id'],
+            'order_details.*.product_id' => ['required'],
             'order_details.*.quantity' => ['required', 'integer', 'min:1'],
         ];
 

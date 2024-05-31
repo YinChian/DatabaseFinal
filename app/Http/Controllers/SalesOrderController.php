@@ -27,6 +27,9 @@ class SalesOrderController extends Controller
 
         $validatedData = $request->validated();
 
+        // Initialize total amount
+        $totalAmount = 0;
+
         // Check if request quantity is smaller than Product quantity
         foreach ($validatedData['order_details'] as $detail) {
             $product = Products::find($detail['product_id']);
@@ -34,63 +37,57 @@ class SalesOrderController extends Controller
                 if ($product->StockQuantity < $detail['quantity']) {
                     return response()->json(['error' => 'Quantity of product ' . $product->id . ' is not enough.'], 400);
                 }
+                $totalAmount += $product->Price * $detail['quantity'];
             } else {
                 return response()->json(['error' => 'Product not found: ' . $detail['product_id']], 404);
             }
         }
 
+        // find if there is a SalesOrder not completed by the customer
+        $salesOrder = SalesOrder::where('CustomerID', $validatedData['customer_id'])
+            ->where('PaymentStatus', 'Pending')
+            ->where('DeliveryStatus', 'Pending')
+            ->first();
 
-
-        // Initialize total amount
-        $totalAmount = 0;
-
-
-        // Calculate total amount
-        foreach ($validatedData['order_details'] as $detail) {
-            $product = Products::find($detail['product_id']);
-            if ($product) {
-                $totalAmount += $product->Price * $detail['quantity'];
-            }
-            else {
-                Log::error('Product not found: ' . $detail['product_id']);
-            }
-        }
         DB::beginTransaction();
         try {
-            // Create Sales Order
-            $salesOrder = SalesOrder::create([
-                'CustomerID' => $validatedData['customer_id'],
-                'TotalAmount' => $totalAmount,
-                'PaymentStatus' => 'Pending',
-                'DeliveryStatus' => 'Pending',
-            ]);
+            if ($salesOrder) {
+                $salesOrder->update([
+                    'TotalAmount' => $totalAmount,
+                ]);
+                // delete Order Details where OrderID = $salesOrder->id
+                OrderDetails::where('OrderID', $salesOrder->id)->delete();
+            } else {
+                // Create Sales Order
+                $salesOrder = SalesOrder::create([
+                    'CustomerID' => $validatedData['customer_id'],
+                    'TotalAmount' => $totalAmount,
+                    'PaymentStatus' => 'Pending',
+                    'DeliveryStatus' => 'Pending',
+                ]);
+            }
 
             // LOG::info('Sales Order created: ' . $salesOrder);
 
-            if ($salesOrder) {
-                // Create Order Details
-                foreach ($validatedData['order_details'] as $detail) {
-                    $product = Products::find($detail['product_id']);
-                    LOG::info('Product found: ' . $product);
-                    if ($product) {
-                        OrderDetails::create([
-                            'OrderID' => $salesOrder->id,
-                            'ProductID' => $detail['product_id'],
-                            'Quantity' => $detail['quantity'],
-                            'Price' => $product->Price * $detail['quantity'],
-                        ]);
-                    } else {
-                        Log::error('Product not found while creating order detail: ' . $detail['product_id']);
-                    }
+            // Create Order Details
+            foreach ($validatedData['order_details'] as $detail) {
+                $product = Products::find($detail['product_id']);
+                LOG::info('Product found: ' . $product);
+                if ($product) {
+                    OrderDetails::create([
+                        'OrderID' => $salesOrder->id,
+                        'ProductID' => $detail['product_id'],
+                        'Quantity' => $detail['quantity'],
+                        'Price' => $product->Price * $detail['quantity'],
+                    ]);
+                } else {
+                    Log::error('Product not found while creating order detail: ' . $detail['product_id']);
                 }
-
-                DB::commit();
-
-                return response()->json(['success' => true, 'OrderID' => $salesOrder->id], 201);
-            } else {
-                DB::rollBack();
-                return response()->json(['error' => 'Failed to create sales order.'], 500);
             }
+
+            DB::commit();
+
+            return response()->json(['success' => true, 'OrderID' => $salesOrder->id], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Error creating sales order: ' . $e->getMessage());
@@ -104,10 +101,14 @@ class SalesOrderController extends Controller
         $salesOrder = SalesOrder::where('CustomerID', $id)->first();
 
         if (!$salesOrder) {
-            return response()->json(['error' => 'Sales Order not found'], 404);
+            return response()->json(['error' => 'Customer has no sales order'], 404);
         }
 
-        return response()->json($salesOrder);
+        // find sales details by order id
+        $orderDetails = OrderDetails::where('OrderID', $salesOrder->id)->get();
+
+        // return sales order and order details
+        return response()->json(['sales_order' => $salesOrder, 'order_details' => $orderDetails]);
     }
 
     public function update(Request $request, $id)
