@@ -8,13 +8,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('ProductID');
+            $table->id();
             $table->string('Name');
             $table->text('Description');
-            $table->unsignedInteger('Price');
+            $table->decimal('Price', 8, 2);
             $table->unsignedInteger('StockQuantity');
-            $table->unsignedInteger('CategoryID');
-
+            $table->unsignedInteger('CategoryID'); //TODO: This will be a foreign key to the 'categories' table
+            $table->timestamps();
         });
     }
 

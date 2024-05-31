@@ -18,12 +18,20 @@ class ProductsController extends Controller
     {
         $products = Products::create($request->all());
 
-        return response()->json($products, 201);
+        if (!$products) {
+            return response()->json(['error' => 'Product not created'], 404);
+        }
+
+        return response()->json(true, 201);
     }
 
     public function show ($id)
     {
         $product = Products::find($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
 
         return response()->json($product);
     }
@@ -33,13 +41,23 @@ class ProductsController extends Controller
         $product = Products::findOrFail($id);
         $product->update($request->all());
 
-        return response()->json($product);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        return response()->json(true);
     }
 
     public function destroy ($id)
     {
-        Products::find($id)->delete();
+        $product = Products::find($id);
 
-        return response()->json(null, 204);
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        $product->delete();
+
+        return response()->json(true, 204);
     }
 }

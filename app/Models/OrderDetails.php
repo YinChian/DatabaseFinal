@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderDetails extends Model
 {
     protected $fillable = [
+        'OrderID',
         'ProductID',
         'Quantity',
         'Price',
@@ -20,7 +21,7 @@ class OrderDetails extends Model
 
     public function salesOrder_orderDetails(): BelongsTo
     {
-        return $this->belongsTo(SalesOrder::class, 'ProductID');
+        return $this->belongsTo(SalesOrder::class, 'OrderID');
     }
 
 }

@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('customer_interactions', function (Blueprint $table) {
-            $table->id('InteractionID');
+            $table->id();
             $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
             $table->date('Date');
             $table->enum('Mode', ['Email', 'Phone', 'In-Person']);
             $table->text('Description');
-            $table->timestamp('InteractionDate');
+            $table->timestamps();
         });
     }
 

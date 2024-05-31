@@ -4,35 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomersRequest;
 use App\Models\Customers;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class CustomersController extends Controller
 {
+
     public function index ()
     {
+        LOG::info('CustomersController@index hit');
+
         $customers = Customers::all();
 
-        return  response()->json($customers);
+        // return response()->json($customers);
+        return csrf_token(); // This will return the CSRF token for postmen testing
     }
 
     public function store (CustomersRequest $request)
     {
         $customers = Customers::create($request->all());
 
-        return response()->json($customers, 201);
+        if (!$customers) {
+            return response()->json(['error' => 'Customer not created'], 404);
+        }
+
+        return response()->json(true, 201);
     }
 
-    public function show ($id)
+    public function show($id)
     {
-        $customers = Customers::findOrFail($id);
+        $customer = Customers::find($id);
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
 
-        return response()->json($customers);
+        return response()->json($customer);
     }
 
     public function update (CustomersRequest $request, $id)
     {
-        $customers = Customers::findOrFail($id)->update($request->all());
+        $customers = Customers::find($id);
 
-        return response()->json($customers);
+        if (!$customers) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
+
+        $customers->update($request->all());
+
+        return response()->json(true);
     }
 
     public function destroy ($id)
@@ -40,10 +59,10 @@ class CustomersController extends Controller
         $customer = Customers::find($id);
 
         if (!$customer) {
-            return response()->json(['message' => 'Customer not found.'], 404);
+            return response()->json(['error' => 'Customer not found.'], 404);
         }
         $customer->delete();
 
-        return response()->json(null, 204);
+        return response()->json(true, 204);
     }
 }

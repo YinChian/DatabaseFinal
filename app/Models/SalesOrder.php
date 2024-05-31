@@ -20,9 +20,9 @@ class SalesOrder extends Model
         return $this->belongsTo(Customers::class, 'CustomerID');
     }
 
-    public function orderDetails_salesOrder(): HasMany
-    {
-        return $this->hasMany(OrderDetails::class, 'OrderID');
-    }
+    // public function orderDetails_salesOrder(): HasMany
+    // {
+    //     return $this->hasMany(OrderDetails::class, 'OrderID');
+    // }
 
 }

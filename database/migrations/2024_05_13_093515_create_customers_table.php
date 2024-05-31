@@ -8,16 +8,13 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id('CustomerID');
-            // $table->id();
+            $table->id();
             $table->string('Name');
             $table->string('Email')->unique();
             $table->string('PhoneNumber');
             $table->string('Address');
             $table->enum('CustomerType', ['Individual', 'Corporate']);
-            $table->timestamp('RegistrationDate');
-            // $table->date('RegistrationDate');
-            // $table->timestamps();
+            $table->timestamps(); // This will add 'created_at' and 'updated_at' columns
         });
     }
 

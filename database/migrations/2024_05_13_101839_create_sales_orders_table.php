@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('sales_orders', function (Blueprint $table) {
-            $table->id('OrderID');
+            $table->id();
             $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
-            $table->unsignedInteger('TotalAmount');
+            $table->decimal('TotalAmount', 8, 2);
             $table->enum('PaymentStatus', ['Pending', 'Completed', 'Failed']);
             $table->enum('DeliveryStatus', ['Pending', 'Shipped', 'Delivered']);
-            $table->timestamp('OrderDate')->nullable();
+            $table->timestamps();
         });
     }
 
