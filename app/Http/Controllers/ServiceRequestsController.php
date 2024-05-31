@@ -29,6 +29,7 @@ class ServiceRequestsController extends Controller
                 'CustomerID' => $request->CustomerID,
                 'ProductID' => $request->ProductID,
                 'IssueDescription' => $request->IssueDescription,
+                'ResolutionDate' => null,
                 'Status' => "Pending",
             ]);
 
@@ -58,6 +59,7 @@ class ServiceRequestsController extends Controller
                 // 'CustomerID' => $request->CustermerID,
                 // 'ProductID' => $request->ProductID,
                 // 'IssueDescription' => $request->IssueDescription,
+                'ResolutionDate' => $request->ResolutionDate,
                 'Status' => $request->Status,
             ]);
 

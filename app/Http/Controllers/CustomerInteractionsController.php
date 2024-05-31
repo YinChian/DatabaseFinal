@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerInteractionsRequest;
 use App\Models\CustomerInteractions;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CustomerInteractionsController extends Controller
 {
@@ -18,12 +21,13 @@ class CustomerInteractionsController extends Controller
     {
         $interaction = CustomerInteractions::create($request->all());
 
-        return response()->json($interaction, 201);
+        return response()->json(['success' => true, 'CustomerInteractions_id' => $interaction->id], 200);
     }
 
     public function show ($id)
     {
-        $interaction = CustomerInteractions::find($id);
+        // $interaction = CustomerInteractions::find($id);
+        $interaction = CustomerInteractions::where('CustomerID', $id)->get();
         return response()->json($interaction);
     }
 
@@ -32,13 +36,14 @@ class CustomerInteractionsController extends Controller
         $interaction = CustomerInteractions::findOrFail($id);
         $interaction->update($request->all());
 
-        return response()->json($interaction);
+        return response()->json(['success' => true,
+                                'CustomerInteractions_id' => $interaction->id], 200);
     }
 
     public function destroy ($id)
     {
         CustomerInteractions::find($id)->delete();
 
-        return response()->json(null, 204);
+        return response()->json(['success' => true], 200);
     }
 }

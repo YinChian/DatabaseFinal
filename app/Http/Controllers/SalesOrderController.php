@@ -97,19 +97,32 @@ class SalesOrderController extends Controller
 
     public function show($id)
     {
-        // find sales order by customer id
-        $salesOrder = SalesOrder::where('CustomerID', $id)->first();
+        // find sales orders by customer id
+        $salesOrders = SalesOrder::where('CustomerID', $id)->get();
 
-        if (!$salesOrder) {
+        if ($salesOrders->isEmpty()) {
             return response()->json(['error' => 'Customer has no sales order'], 404);
         }
 
-        // find sales details by order id
-        $orderDetails = OrderDetails::where('OrderID', $salesOrder->id)->get();
+        // Initialize an array to hold sales orders with their order details
+        $result = [];
 
-        // return sales order and order details
-        return response()->json(['sales_order' => $salesOrder, 'order_details' => $orderDetails]);
+        // Iterate through each sales order
+        foreach ($salesOrders as $salesOrder) {
+            // find sales details by order id
+            $orderDetails = OrderDetails::where('OrderID', $salesOrder->id)->get();
+
+            // Add sales order and its details to the result array
+            $result[] = [
+                'sales_order' => $salesOrder,
+                'order_details' => $orderDetails
+            ];
+        }
+
+        // return all sales orders with their order details
+        return response()->json($result);
     }
+
 
     public function update(Request $request, $id)
     {

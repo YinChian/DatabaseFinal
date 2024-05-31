@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('CustomerID')->constrained('customers')->onDelete('cascade');
             $table->foreignId('ProductID')->constrained('products')->onDelete('cascade');
             $table->text('IssueDescription');
-            // $table->date('ResolutionDate')->nullable();
+            $table->date('ResolutionDate')->nullable();
             $table->enum('Status', ['Pending', 'Resolved']);
             $table->timestamps();
         });

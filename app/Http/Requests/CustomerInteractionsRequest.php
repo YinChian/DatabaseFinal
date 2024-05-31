@@ -9,7 +9,8 @@ class CustomerInteractionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'CustomerID' => ['required', 'integer'],
+            'CustomerID' => ['required'],
+            'Date' => ['required', 'date'],
             'Mode' => ['required'],
             'Description' => ['required'],
         ];
