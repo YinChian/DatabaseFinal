@@ -17,6 +17,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         // 'jsonmiddleware' => \App\Http\Middleware\JsonMiddleware::class,
-        'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,
+//        'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,
+//        'cors' => \App\Http\Middleware\CorsMiddleware::class,
     ];
 }

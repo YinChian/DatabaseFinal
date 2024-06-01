@@ -133,7 +133,29 @@
                 <h1>庫存列表</h1>
                 <p>請在此查看所有庫存列表。</p>
             </div>
-            <div class="col-md-6 col-xl-10"><button class="btn btn-primary" type="button">新增紀錄</button></div>
+            <div class="col-md-6 col-xl-10"><div class="table-responsive">
+    <table class="table" id="dynamicTable">
+        <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名稱</th>
+                <th>商品敘述</th>
+                <th>單價</th>
+                <th>庫存量</th>
+                <th>類別ID</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- 由JS生成 -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+<input type="hidden" id="csrfToken" name="_token" value="YOUR_CSRF_TOKEN_HERE" />
+<button class="btn btn-primary mt-2" onclick="addRow()">新增</button></div>
         </div>
     </div>
     <footer class="text-center">
@@ -159,6 +181,8 @@
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js/stock.js"></script>
 </body>
 
 </html>

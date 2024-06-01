@@ -12,12 +12,12 @@ class CustomersController extends Controller
 
     public function index ()
     {
-        LOG::info('CustomersController@index hit');
+//        LOG::info('CustomersController@index hit');
 
         $customers = Customers::all();
 
-        // return response()->json($customers);
-        return csrf_token(); // This will return the CSRF token for postmen testing
+         return response()->json($customers);
+//        return csrf_token(); // This will return the CSRF token for postmen testing
     }
 
     public function store (CustomersRequest $request)
