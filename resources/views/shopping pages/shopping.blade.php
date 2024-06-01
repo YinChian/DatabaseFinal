@@ -121,43 +121,34 @@
                 <p class="w-lg-50">Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
             </div>
         </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2">
-            <div class="col">
-                <div class="d-flex flex-column flex-lg-row">
-                    <div class="w-100"><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"></div>
-                    <div class="py-4 py-lg-0 px-lg-4">
-                        <h4>Lorem libero donec</h4>
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary" type="button">購買</button><button class="btn btn-primary" type="button">提問</button>
-                    </div>
-                </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xl-2">
+                <h1>庫存列表</h1>
+                <p>請在此查看所有庫存列表。</p>
             </div>
-            <div class="col">
-                <div class="d-flex flex-column flex-lg-row">
-                    <div class="w-100"><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"></div>
-                    <div class="py-4 py-lg-0 px-lg-4">
-                        <h4>Lorem libero donec</h4>
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary" type="button">購買</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="d-flex flex-column flex-lg-row">
-                    <div class="w-100"><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"></div>
-                    <div class="py-4 py-lg-0 px-lg-4">
-                        <h4>Lorem libero donec</h4>
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary" type="button">購買</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="d-flex flex-column flex-lg-row">
-                    <div class="w-100"><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"></div>
-                    <div class="py-4 py-lg-0 px-lg-4">
-                        <h4>Lorem libero donec</h4>
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><button class="btn btn-primary" type="button">購買</button>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-6 col-xl-10"><div class="table-responsive">
+    <table class="table" id="dynamicTable">
+        <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名稱</th>
+                <th>商品敘述</th>
+                <th>單價</th>
+                <th>庫存量</th>
+                <th>類別ID</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- 由JS生成 -->
+            </tr>
+        </tbody>
+    </table>
+</div></div>
         </div>
     </div>
     <footer class="text-center">
@@ -184,6 +175,7 @@
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js/shopping.js"></script>
 </body>
 
 </html>

@@ -41,13 +41,9 @@
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z"></path>
                                 </svg></div>
-                            <form class="text-center" method="post">
-                                <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="電子郵件 / Email"></div>
-                                <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="密碼 / Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="border-style: none;background: var(--bs-body-color);">註冊 Register</button></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">登入 Login</button></div>
-                                <div class="mb-3"></div>
-                            </form>
+                            <div class="mb-3"><input type="text" placeholder="使用者ID"></div>
+                            <div class="mb-3"><a class="btn btn-primary d-block w-100" role="button" href="http://localhost/db_final/login%20pages/register.html" style="border-style: none;background: var(--bs-body-color);">註冊 Register</a></div>
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="button">登入 Login</button></div>
                         </div>
                     </div>
                 </div>

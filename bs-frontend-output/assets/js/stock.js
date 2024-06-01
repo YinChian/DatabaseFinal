@@ -1,4 +1,4 @@
-const apiUrl = 'http://127.0.0.1:8000/products'; // 替換為你的API URL
+const apiUrl = 'http://127.0.0.1:8000/products';
 const csrfUrl = 'http://127.0.0.1:8000/csrf-token';
 let csrfToken = '';
 
