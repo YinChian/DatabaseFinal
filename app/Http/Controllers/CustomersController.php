@@ -28,7 +28,8 @@ class CustomersController extends Controller
             return response()->json(['error' => 'Customer not created'], 404);
         }
 
-        return response()->json(true, 201);
+        // return customer id
+        return response()->json(['success' => true, 'CustomerID' => $customers->id], 200);
     }
 
     public function show($id)
