@@ -36,10 +36,11 @@ async function submit() {
         const response = await axios.post('http://127.0.0.1:8000/customers', data, { withCredentials: true });
         
         // 處理回應
-        if (response.status === 201) {
-            alert('註冊成功！請登入後使用！');
+        if (response.status === 200) {
+            alert(`您的顧客ID是${response.data.CustomerID}，請牢記這個數字。\n註冊成功！請登入後使用！`);
+            localStorage.setItem('UserID', response.data.CustomerID);
             // 你可以在這裡進行頁面跳轉或其他操作
-            window.location.href = '/login.html';
+            window.location.href = '/static pages/customer-home.html';
         } else {
             alert('註冊失敗，請重試。');
         }

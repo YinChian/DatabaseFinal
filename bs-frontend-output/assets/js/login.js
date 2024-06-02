@@ -7,6 +7,7 @@ async function fetchCsrfToken() {
   csrfToken = response.data.csrfToken;
 }
 fetchCsrfToken();
+localStorage.removeItem('UserID');
 
 async function login(){
     const userId = document.getElementById('UserID').value;
