@@ -127,76 +127,30 @@
             </div>
         </div>
     </div>
-    <div class="container py-4 py-xl-5">
-        <div class="text-center text-white-50 bg-primary border rounded border-0 p-3">
-            <div class="row row-cols-2 row-cols-md-4">
-                <div class="col">
-                    <div class="p-3">
-                        <h4 class="display-5 fw-bold text-white mb-0">0</h4>
-                        <p class="mb-0">未處理件總計</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="p-3">
-                        <h4 class="display-5 fw-bold text-white mb-0">0</h4>
-                        <p class="mb-0">產品相關之客服件</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="p-3">
-                        <h4 class="display-5 fw-bold text-white mb-0">0</h4>
-                        <p class="mb-0">非產品相關之客服件</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="p-3">
-                        <h4 class="display-5 fw-bold text-white mb-0">0</h4>
-                        <p class="mb-0">已處理件總計</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-xl-3">
                 <h1>未處理件</h1>
-                <p>這邊是所有待處理的客戶或產品回饋。</p>
+                <p>ServiceRequest的未處理件</p>
             </div>
-            <div class="col-md-6 col-xl-9">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>客服ID</th>
-                                <th>時間</th>
-                                <th>客戶ID</th>
-                                <th>產品ID</th>
-                                <th>問題描述</th>
-                                <th>解決</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Cell 1</td>
-                                <td>Cell 2</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                                <td>Cell 5</td>
-                                <td><button class="btn btn-primary" type="button">解決</button></td>
-                            </tr>
-                            <tr>
-                                <td>Cell 1</td>
-                                <td>Cell 2</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                                <td>Cell 5</td>
-                                <td><button class="btn btn-primary" type="button">解決</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="col-md-6 col-xl-9"><div class="table-responsive">
+    <table class="table" id="customer-interaction-table">
+        <thead>
+            <tr>
+                <th>客服ID</th>
+                <th>顧客ID</th>
+                <th>產品ID</th>
+                <th>問題描述</th>
+                <th>最後更新</th>
+                <th>產生時間</th>
+                <th>問題狀態</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+</div></div>
         </div>
     </div>
     <footer class="text-center">
@@ -222,6 +176,7 @@
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/feedback-process.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
