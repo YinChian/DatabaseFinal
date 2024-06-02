@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Payment completed:', response.data);
                 sessionStorage.removeItem('orderID');
                 alert('付款成功，感謝您的購買！');
-                window.location.href = '/shopping.html';
+                window.location.href = '/db_final/shopping pages/shopping.html';
                 // Optionally, you can redirect the user or show a success message
             })
             .catch(function (error) {

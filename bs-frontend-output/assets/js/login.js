@@ -22,7 +22,7 @@ async function login(){
             localStorage.setItem('UserID', userId);
 
             // 你可以在這裡進行頁面跳轉或其他操作
-            window.location.href = '/static%20pages/customer-home.html';
+            window.location.href = '/db_final/static pages/customer-home.html';
         } else if (response.status === 404) {
             alert('無此帳號');
         } else {
