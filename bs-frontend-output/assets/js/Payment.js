@@ -43,11 +43,15 @@ document.addEventListener('DOMContentLoaded', function () {
         axios.put(`${apiUrl}/sales-orders/${orderID}`, { payment_status: 'Completed', delivery_status: "Pending", _token: csrfToken }, {withCredentials: true})
             .then(function (response) {
                 console.log('Payment completed:', response.data);
+                sessionStorage.removeItem('orderID');
+                alert('付款成功，感謝您的購買！');
+                window.location.href = '/shopping.html';
                 // Optionally, you can redirect the user or show a success message
             })
             .catch(function (error) {
                 console.error('Error completing payment:', error);
                 // Optionally, you can show an error message to the user
+                alert('付款失敗！');
             });
     });
 });

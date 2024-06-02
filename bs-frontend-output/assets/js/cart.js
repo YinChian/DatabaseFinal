@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => {
         alert("訂單已成功送出");
         // 此處可以加入跳轉到其他頁面的邏輯
+        sessionStorage.removeItem('BuyProductID');
         sessionStorage.setItem('orderID', response.data.OrderID);
         window.location.href = '/payment.html';
       })
