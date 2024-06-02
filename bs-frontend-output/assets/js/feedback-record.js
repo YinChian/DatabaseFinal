@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const date = document.getElementById('date').value;
         const method = methodButton.textContent.trim();
-        if (!['In-Preson', 'Email', 'Phone'].includes(method)) {
+        if (!['In-Person', 'Email', 'Phone'].includes(method)) {
             alert('請選擇溝通方式！');
             return;
         }

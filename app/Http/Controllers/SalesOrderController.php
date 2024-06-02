@@ -158,10 +158,6 @@ class SalesOrderController extends Controller
 
         DB::beginTransaction();
         try {
-            $salesOrder->update([
-                'PaymentStatus' => $request->payment_status,
-                'DeliveryStatus' => $request->delivery_status,
-            ]);
 
 
             // LOG::info('Sales Order updated: ' . $salesOrder);
@@ -169,7 +165,7 @@ class SalesOrderController extends Controller
 
             // Check if payment status is Completed
             // then update product quantity
-            if ($request->payment_status == 'Completed') {
+            if ($request->payment_status == 'Completed' and $salesOrder->PaymentStatus == 'Pending') { // 我只希望在付錢的時候減少庫存量
                 $orderDetails = OrderDetails::where('OrderID', $salesOrder->id)->get();
                 foreach ($orderDetails as $detail) {
                     $product = Products::find($detail->ProductID);
@@ -181,6 +177,11 @@ class SalesOrderController extends Controller
                     }
                 }
             }
+
+            $salesOrder->update([
+                'PaymentStatus' => $request->payment_status,
+                'DeliveryStatus' => $request->delivery_status,
+            ]);
 
             // design for update order details
             // if (isset($validatedData['order_details'])) {

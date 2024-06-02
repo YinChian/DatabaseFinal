@@ -39,7 +39,7 @@ async function loadTable() {
 }
 
 async function buy(id) {
-    sessionStorage.setItem('BuyProductID', id);
+    localStorage.setItem('BuyProductID', id);
     window.location.href = "/db_final/shopping pages/cart.html";
 }
 

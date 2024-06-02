@@ -27,6 +27,7 @@ async function loadTable() {
                     <td>${new Date(row.created_at).toLocaleDateString()}</td>
                     <td>${new Date(row.updated_at).toLocaleDateString()}</td>
                     <td>${row.PaymentStatus}</td>
+                    <td>等待寄送中</td>
                     <td><button class="btn btn-primary" type="button" onclick="changeState(${row.id}, 'Shipped', '${row.PaymentStatus}')">變更為已送出</button></td>
                 `;
                 break;
@@ -37,6 +38,7 @@ async function loadTable() {
                     <td>${new Date(row.created_at).toLocaleDateString()}</td>
                     <td>${new Date(row.updated_at).toLocaleDateString()}</td>
                     <td>${row.PaymentStatus}</td>
+                    <td>寄送中</td>
                     <td><button class="btn btn-primary" type="button" onclick="changeState(${row.id}, 'Delivered', '${row.PaymentStatus}')">變更為已送達</button></td>
                 `;
                 break;
@@ -48,6 +50,7 @@ async function loadTable() {
                     <td>${new Date(row.updated_at).toLocaleDateString()}</td>
                     <td>${row.PaymentStatus}</td>
                     <td>已送達</td>
+                    <td></td>
                 `;
                 break;
             default:
@@ -63,7 +66,7 @@ async function changeState(orderId, newState, paymentStatus) {
         const response = await axios.put(`${apiUrl}/sales-orders/${orderId}`, {
             delivery_status: newState,
             payment_status: paymentStatus,
-            // _token: csrfToken
+            _token: csrfToken
         }, {
             headers: {
                 'X-CSRF-Token': csrfToken

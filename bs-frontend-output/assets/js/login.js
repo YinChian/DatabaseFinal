@@ -17,8 +17,9 @@ async function login(){
         // 處理回應
         if (response.status === 200 && !response.data.length) {
             
-            alert(`登入成功，歡迎${response.data.Name}使用系統！`);
+            alert(`登入成功，歡迎 ${response.data.Name} 使用！`);
             localStorage.setItem('UserID', response.data.id);
+            // localStorage.setItem('Username', response.data.Name);
 
             // 你可以在這裡進行頁面跳轉或其他操作
             window.location.href = '/db_final/static pages/customer-home.html';

@@ -19,13 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchCsrfToken();
 
-    // const apiUrl = `${apiRoot}/service-requests`;
-
     const fetchServiceRequests = async () => {
         try {
             const response = await axios.get(`${apiUrl}/service-requests`);
             const serviceRequests = response.data;
-            populateTable(serviceRequests);
+            populateServiceRequestTable(serviceRequests);
         } catch (error) {
             console.error('Error fetching service requests:', error);
         }
@@ -37,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 Status: 'Resolved',
                 ResolutionDate: getFormattedDate(timezone),
                 _token: csrfToken
-
             }, {withCredentials: true});
             fetchServiceRequests(); // Refresh the table after update
         } catch (error) {
@@ -45,8 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const populateTable = (data) => {
-        const tableBody = document.querySelector('#customer-interaction-table tbody');
+    const fetchCustomerInteractions = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/customer-interactions`);
+            const customerInteractions = response.data;
+            populateCustomerInteractionTable(customerInteractions);
+        } catch (error) {
+            console.error('Error fetching customer interactions:', error);
+        }
+    };
+
+    const populateServiceRequestTable = (data) => {
+        const tableBody = document.querySelector('#service-request-table tbody');
         tableBody.innerHTML = ''; // Clear existing rows
 
         data.forEach(request => {
@@ -75,5 +82,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const populateCustomerInteractionTable = (data) => {
+        const tableBody = document.querySelector('#customer-interaction-table tbody');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        data.forEach(interaction => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${interaction.id}</td>
+                <td>${interaction.CustomerID}</td>
+                <td>${interaction.Description}</td>
+                <td>${interaction.Mode}</td>
+                <td>${new Date(interaction.created_at).toLocaleString()}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    };
+
     fetchServiceRequests();
+    fetchCustomerInteractions();
 });

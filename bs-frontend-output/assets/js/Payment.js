@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (response) {
             const data = response.data;
             if (data && data.length > 0) {
-                const order = data[0]; // Assuming there's only one order for simplicity
+                const order = data[data.length - 1]; // Assuming there's only one order for simplicity
                 
                 // let ProductName = '';
                 axios.get(`${apiUrl}/products/${order.order_details[0].ProductID}`)
@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle payment submission
     document.getElementById('Pay').addEventListener('click', function (event) {
         event.preventDefault();
-        orderID = sessionStorage.getItem('orderID');
+        orderID = localStorage.getItem('orderID');
         axios.put(`${apiUrl}/sales-orders/${orderID}`, { payment_status: 'Completed', delivery_status: "Pending", _token: csrfToken }, {withCredentials: true})
             .then(function (response) {
                 console.log('Payment completed:', response.data);
-                sessionStorage.removeItem('orderID');
+                localStorage.removeItem('orderID');
                 alert('付款成功，感謝您的購買！');
                 window.location.href = '/db_final/shopping pages/shopping.html';
                 // Optionally, you can redirect the user or show a success message

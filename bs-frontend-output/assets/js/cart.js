@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fetchCsrfToken();
 
   // 取得sessionStorage中的ProductID
-  const productID = sessionStorage.getItem("BuyProductID");
+  const productID = localStorage.getItem("BuyProductID");
 
   // 定義後端API的URL
   const productsApiUrl = `${apiUrl}/products/${productID}`;
@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
     axios
       .post(salesOrdersApiUrl, orderData, { withCredentials: true })
       .then((response) => {
-        alert("訂單已成功送出");
+        alert("訂單已成功送出，付款成功後才算真的購買");
         // 此處可以加入跳轉到其他頁面的邏輯
-        sessionStorage.removeItem('BuyProductID');
-        sessionStorage.setItem('orderID', response.data.OrderID);
+        localStorage.removeItem('BuyProductID');
+        localStorage.setItem('orderID', response.data.OrderID);
         window.location.href = '/db_final/shopping pages/payment.html';
       })
       .catch((error) => {

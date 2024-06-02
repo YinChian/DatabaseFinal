@@ -127,14 +127,10 @@
             </div>
         </div>
     </div>
-    <div class="container" id="Process">
+    <div class="container" id="Process" style="margin-bottom: 10rem;">
         <div class="row">
-            <div class="col-md-6 col-xl-3">
-                <h1>未處理件</h1>
-                <p>ServiceRequest的未處理件</p>
-            </div>
             <div class="col-md-6 col-xl-9"><div class="table-responsive">
-    <table class="table" id="customer-interaction-table">
+    <table class="table" id="service-request-table">
         <thead>
             <tr>
                 <th>客服ID</th>
@@ -144,6 +140,34 @@
                 <th>最後更新</th>
                 <th>產生時間</th>
                 <th>問題狀態</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+</div></div>
+            <div class="col-md-6 col-xl-3">
+                <h1>商品提問件</h1>
+                <p>ServiceRequest的提問紀錄</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="Process-1">
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <h1>客服件</h1>
+                <p>CustomerInteraction的提問紀錄</p>
+            </div>
+            <div class="col-md-6 col-xl-9"><div class="table-responsive">
+    <table class="table" id="customer-interaction-table">
+        <thead>
+            <tr>
+                <th>客服ID</th>
+                <th>顧客ID</th>
+                <th>問題描述</th>
+                <th>溝通方式</th>
+                <th>產生時間</th>
             </tr>
         </thead>
         <tbody>
