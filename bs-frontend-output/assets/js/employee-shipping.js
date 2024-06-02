@@ -63,7 +63,7 @@ async function changeState(orderId, newState, paymentStatus) {
         const response = await axios.put(`${apiUrl}/sales-orders/${orderId}`, {
             delivery_status: newState,
             payment_status: paymentStatus,
-            _token: csrfToken
+            // _token: csrfToken
         }, {
             headers: {
                 'X-CSRF-Token': csrfToken

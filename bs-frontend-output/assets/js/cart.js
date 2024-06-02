@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 此處可以加入跳轉到其他頁面的邏輯
         sessionStorage.removeItem('BuyProductID');
         sessionStorage.setItem('orderID', response.data.OrderID);
-        window.location.href = '/db_final/shopping pages//payment.html';
+        window.location.href = '/db_final/shopping pages/payment.html';
       })
       .catch((error) => {
         console.error("Error placing order:", error);

@@ -6,21 +6,19 @@ async function fetchCsrfToken() {
   const response = await axios.get(csrfUrl, { withCredentials: true });
   csrfToken = response.data.csrfToken;
 }
-fetchCsrfToken();
-localStorage.removeItem('UserID');
 
 async function login(){
-    const userId = document.getElementById('UserID').value;
+    const userEmail = document.getElementById('Email').value;
     
     try {
         // 發送 Get 請求到伺服器
-        const response = await axios.get(`${apiUrl}/${userId}`, { withCredentials: true });
+        const response = await axios.get(`${apiUrl}/email/${userEmail}`, { withCredentials: true });
         
         // 處理回應
         if (response.status === 200 && !response.data.length) {
             
             alert(`登入成功，歡迎${response.data.Name}使用系統！`);
-            localStorage.setItem('UserID', userId);
+            localStorage.setItem('UserID', response.data.id);
 
             // 你可以在這裡進行頁面跳轉或其他操作
             window.location.href = '/db_final/static pages/customer-home.html';
@@ -30,8 +28,41 @@ async function login(){
             alert('登入失敗，請重試。');
         }
     } catch (error) {
-        console.error('登入過程中出現錯誤：', error);
-        alert('登入過程中出現錯誤，請稍後再試。');
+        if(error.response.status === 404) {
+            alert('無此帳號');
+        } else {
+            console.error('登入過程中出現錯誤：', error);
+            alert('登入過程中出現錯誤，請稍後再試。');
+        }
     }
-    
 }
+
+
+async function createQuickLoginButton() {
+    const userId = localStorage.getItem('UserID');
+    if (userId) {
+        try {
+            const response = await axios.get(`${apiUrl}/${userId}`, { withCredentials: true });
+            if (response.status === 200 && response.data.Email) {
+                const quickLoginDiv = document.getElementById('quick-login');
+                const button = document.createElement('button');
+                button.classList = 'btn btn-success d-block w-100';
+                button.innerText = `使用 ${response.data.Email} 登入`;
+                quickLoginDiv.appendChild(button);
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('Email').value = response.data.Email;
+                    login();
+                })
+                
+            }
+        } catch (error) {
+            console.error('獲取用戶信息過程中出現錯誤：', error);
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchCsrfToken();
+    createQuickLoginButton();
+});
