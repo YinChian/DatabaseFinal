@@ -131,13 +131,16 @@
                     <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
                         <div class="card mb-5">
                             <div class="card-body p-sm-5">
-                                <form method="post">
-                                    <div class="mb-3"><label class="form-label">使用者名稱</label><input class="form-control" type="text" id="name-2" name="name" placeholder="Name" value="{%default%}"></div>
-                                    <div class="mb-3"><label class="form-label">電話號碼</label><input class="form-control" type="text" id="name-1" name="name" placeholder="Name" value="{%default%}"></div>
-                                    <div class="mb-3"><label class="form-label">住址</label><input class="form-control" type="text" id="name-3" name="name" placeholder="Name" value="{%default%}"></div>
-                                    <div class="mb-3"><label class="form-label">電子郵件</label><input class="form-control" type="email" id="email-2" name="email" placeholder="Email" value="{%default%}"></div>
-                                    <div style="padding-bottom: 16px;"><button class="btn btn-primary d-block w-100" type="submit">確定</button></div>
-                                    <div><button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-danger);border-color: var(--bs-danger);">刪除帳號</button></div>
+                                <form>
+                                    <div class="mb-3"><label class="form-label">使用者名稱</label><input class="form-control" type="text" id="name-2" name="username" placeholder="Name"></div>
+                                    <div class="mb-3"><label class="form-label">電話號碼</label><input class="form-control" type="text" id="name-1" name="phone" placeholder="Phone"></div>
+                                    <div class="mb-3"><label class="form-label">住址</label><input class="form-control" type="text" id="name-3" name="address" placeholder="Address"></div>
+                                    <div class="mb-3"><label class="form-label">電子郵件</label><input class="form-control" type="email" id="email-2" name="email" placeholder="Email"></div>
+                                    <div class="mb-3">
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1" name="is_corporate"><label class="form-check-label" for="formCheck-1">公司帳戶</label></div>
+                                    </div>
+                                    <div style="padding-bottom: 16px;"><button class="btn btn-primary d-block w-100" id="Confirm" type="button">確定</button></div>
+                                    <div><button class="btn btn-primary d-block w-100" id="Delete" type="button" style="background: var(--bs-danger);border-color: var(--bs-danger);">刪除帳號</button></div>
                                 </form>
                             </div>
                         </div>
@@ -148,6 +151,7 @@
     </section>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/customer-profile-manage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 

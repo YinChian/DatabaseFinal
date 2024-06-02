@@ -131,7 +131,7 @@
                                 </svg></div>
                             <div class="px-2">
                                 <h6 class="mb-0" style="font-weight: bold;">商品名稱</h6>
-                                <p class="mb-0">測試商品1</p>
+                                <p id="product-name" class="mb-0">&nbsp;</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center p-3">
@@ -140,7 +140,7 @@
                                 </svg></div>
                             <div class="px-2">
                                 <h6 class="mb-0" style="font-weight: bold;">庫存</h6>
-                                <p class="mb-0">1</p>
+                                <p id="stock" class="mb-0">&nbsp;</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center p-3">
@@ -149,17 +149,17 @@
                                 </svg></div>
                             <div class="px-2">
                                 <h6 class="mb-0" style="font-weight: bold;">金額</h6>
-                                <p class="mb-0">10</p>
+                                <p id="price" class="mb-0">&nbsp;</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4">
                     <div>
-                        <form class="p-3 p-xl-4" method="post">
-                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="數量 / Quantity" inputmode="numeric" autocomplete="off" autofocus="" required="" pattern="^-?[1-9]\d*$" minlength="1" maxlength="10"></div>
+                        <form class="p-3 p-xl-4">
+                            <div class="mb-3"><input class="form-control" type="text" id="quantity" placeholder="數量 / Quantity" inputmode="numeric" autocomplete="off" autofocus="" required="" pattern="^-?[1-9]\d*$" minlength="1" maxlength="10"></div>
                             <div class="mb-3"></div>
-                            <div><button class="btn btn-primary d-block w-100" type="submit">前往付款 / Checkout</button></div>
+                            <div><button class="btn btn-primary d-block w-100" id="checkout" type="button">前往付款 / Checkout</button></div>
                         </form>
                     </div>
                 </div>
@@ -189,6 +189,7 @@
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bs-init.js"></script>
+    <script src="../assets/js/cart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 

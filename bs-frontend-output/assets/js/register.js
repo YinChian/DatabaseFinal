@@ -37,9 +37,9 @@ async function submit() {
         
         // 處理回應
         if (response.status === 201) {
-            alert('註冊成功！');
+            alert('註冊成功！請登入後使用！');
             // 你可以在這裡進行頁面跳轉或其他操作
-            // window.location.href = '/static%20pages/success.html';
+            window.location.href = '/login.html';
         } else {
             alert('註冊失敗，請重試。');
         }
