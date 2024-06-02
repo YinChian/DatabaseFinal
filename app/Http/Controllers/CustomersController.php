@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomersRequest;
 use App\Models\Customers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 
 class CustomersController extends Controller
 {
+
+    // public function __invoke(Request $request)
+    // {
+    //     // Handle the request
+    // }
 
     public function index ()
     {
@@ -17,7 +24,7 @@ class CustomersController extends Controller
         $customers = Customers::all();
 
          return response()->json($customers);
-//        return csrf_token(); // This will return the CSRF token for postmen testing
+    //    return csrf_token(); // This will return the CSRF token for postmen testing
     }
 
     public function store (CustomersRequest $request)
@@ -34,7 +41,21 @@ class CustomersController extends Controller
 
     public function show($id)
     {
+        LOG::info('CustomersController@show hit');
         $customer = Customers::find($id);
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], 404);
+        }
+
+        return response()->json($customer);
+    }
+
+    public function use_email_get_user(Request $request)
+    {
+        LOG::info('CustomersController@use_email_get_user hit');
+        $email = $request->email;
+        Log::info('Email: ' . $email);
+        $customer = Customers::where('Email', $email)->first();
         if (!$customer) {
             return response()->json(['error' => 'Customer not found'], 404);
         }

@@ -15,10 +15,11 @@ Route::get('csrf-token', function () {
 });
 
 //Route::middleware(CorsMiddleware::class)->group(function () {
-    Route::apiResource('customers', CustomersController::class);
-    Route::apiResource('products', ProductsController::class);
-    Route::apiResource('order-details', OrderDetailsController::class);
-    Route::apiResource('sales-orders', SalesOrderController::class);
-    Route::apiResource('customer-interactions', CustomerInteractionsController::class);
-    Route::apiResource('service-requests', ServiceRequestsController::class);
+Route::apiResource('customers', CustomersController::class);
+Route::get('customers/email/{email}', [CustomersController::class, 'use_email_get_user']);
+Route::apiResource('products', ProductsController::class);
+Route::apiResource('order-details', OrderDetailsController::class);
+Route::apiResource('sales-orders', SalesOrderController::class);
+Route::apiResource('customer-interactions', CustomerInteractionsController::class);
+Route::apiResource('service-requests', ServiceRequestsController::class);
 //});
