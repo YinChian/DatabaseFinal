@@ -3,8 +3,8 @@
 setlocal EnableDelayedExpansion
 
 REM 定義來源和目的地資料夾
-set src_dir="I:\Class\Database\DatabaseFinal\bs-frontend-output"
-set dest_dir="I:\Class\Database\DatabaseFinal\resources"
+set src_dir="D:\HPC LAB\Class\Master first grade\Data Base Design\DatabaseFinal\bs-frontend-output"
+set dest_dir="D:\HPC LAB\Class\Master first grade\Data Base Design\DatabaseFinal\resources"
 
 REM 指定原副檔名和新副檔名
 set "old_ext=html"
