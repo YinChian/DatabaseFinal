@@ -1,8 +1,7 @@
 @echo off
 
-set src_dir="D:\HPC LAB\Class\Master first grade\Data Base Design\DatabaseFinal\bs-frontend-output"
-set dest_dir="D:\XAMPP\htdocs\db_final"
+REM 定義來源和目的地資料夾
+set src_dir="I:\Class\Database\DatabaseFinal\bs-frontend-output"
+set dest_dir="C:\xampp\htdocs\db_final"
 
-xcopy %src_dir% %dest_dir% /E /I /Y
-
-call export-apache.bat
+xcopy "%src_dir%" "%dest_dir%" /E /I /Y
